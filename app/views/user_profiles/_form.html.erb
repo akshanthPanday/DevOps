@@ -28,12 +28,12 @@
 
   <div class="field">
     <%= form.label :user_tag %>
-    <%= form.text_area :user_tag %>
+    <%= form.text_area :user_tag, value: current_user.email %>
   </div>
 
-  <div class="field">
+  <div class="field" style="display: none;">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.text_field :user_id, value: current_user.id %>
   </div>
 
   <div class="actions">

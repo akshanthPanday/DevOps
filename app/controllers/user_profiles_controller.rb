@@ -1,10 +1,14 @@
 class UserProfilesController < ApplicationController
   before_action :set_user_profile, only: [:show, :edit, :update, :destroy]
-
   # GET /user_profiles
   # GET /user_profiles.json
+
+ 
   def index
-    @user_profiles = UserProfile.all
+    
+    @user_profiles = UserProfile.where(user_id: current_user)
+   
+    # UserProfile.find(:all, :conditions => { :user_id => set_current_user })
   end
 
   # GET /user_profiles/1
@@ -25,7 +29,7 @@ class UserProfilesController < ApplicationController
   # POST /user_profiles.json
   def create
     @user_profile = UserProfile.new(user_profile_params)
-
+    
     respond_to do |format|
       if @user_profile.save
         format.html { redirect_to @user_profile, notice: 'User profile was successfully created.' }
@@ -62,6 +66,8 @@ class UserProfilesController < ApplicationController
   end
 
   private
+
+ 
     # Use callbacks to share common setup or constraints between actions.
     def set_user_profile
       @user_profile = UserProfile.find(params[:id])
